@@ -43,7 +43,7 @@ Bu proje, yaşlı bireylerin günlük hayatlarını kolaylaştırmak amacıyla t
 
 ---
 
-## 📷 Görseller (isteğe bağlı)
+## 📷 Görseller
 
 > ![yasli_bakim_1](https://github.com/user-attachments/assets/1a4192cc-ee4f-4ac8-a3b0-29467d6b8551)
 > ![yasli_bakim_2](https://github.com/user-attachments/assets/e816c67a-a0a7-4861-a5ee-08d640224ebe)

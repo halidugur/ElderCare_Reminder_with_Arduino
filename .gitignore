@@ -1,0 +1,15 @@
+*.hex
+*.elf
+*.bin
+*.d
+*.o
+*.a
+*.dep
+*.map
+*.exe
+*.out
+*.class
+build/
+libraries/
+.vscode/
+.idea/

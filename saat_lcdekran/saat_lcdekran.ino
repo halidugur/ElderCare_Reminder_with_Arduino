@@ -1,14 +1,11 @@
-#include <Wire.h>
 #include <DS1302.h>
-#include <LiquidCrystal_I2C.h>
 
-// RTC pinleri
-#define RST_PIN 8
-#define DAT_PIN 7
-#define CLK_PIN 6
+// DS1302 pin tanımları
+const int RST_PIN = 8;
+const int DAT_PIN = 7;
+const int CLK_PIN = 6;
 
 DS1302 rtc(RST_PIN, DAT_PIN, CLK_PIN);
-LiquidCrystal_I2C lcd(0x27, 16, 2);  // LCD I2C adresi 0x27, ekran 16x2
 
 void setup() {
   Serial.begin(9600);
@@ -16,36 +13,31 @@ void setup() {
   rtc.writeProtect(false);
   rtc.halt(false);
 
-  lcd.init();
-  lcd.backlight();
+  //Time t(2025, 5, 2, 21, 30, 0, 0); 
 
-  lcd.setCursor(0, 0);
-  lcd.print("Saat & Tarih Hazir!");
+  rtc.time(t);
+
+  Serial.println("Saat ve Tarih Ayarlandi!");
 }
 
 void loop() {
   Time t = rtc.time();
 
-  // Saat kısmı
-  lcd.setCursor(0, 0);
-  if (t.hr < 10) lcd.print("0");
-  lcd.print(t.hr);
-  lcd.print(":");
-  if (t.min < 10) lcd.print("0");
-  lcd.print(t.min);
-  lcd.print(":");
-  if (t.sec < 10) lcd.print("0");
-  lcd.print(t.sec);
+  Serial.print("Saat: ");
+  Serial.print(t.hr);
+  Serial.print(":");
+  Serial.print(t.min);
+  Serial.print(":");
+  Serial.print(t.sec);
 
-  // Tarih kısmı
-  lcd.setCursor(0, 1);
-  if (t.date < 10) lcd.print("0");
-  lcd.print(t.date);
-  lcd.print("/");
-  if (t.mon < 10) lcd.print("0");
-  lcd.print(t.mon);
-  lcd.print("/");
-  lcd.print(t.yr);
+  Serial.print(" Tarih: ");
+  Serial.print(t.date);
+  Serial.print("/");
+  Serial.print(t.mon);
+  Serial.print("/");
+  Serial.print(t.yr);
 
-  delay(1000);  // Her saniye ekranı güncelle
+  Serial.println();
+
+  delay(1000);
 }
